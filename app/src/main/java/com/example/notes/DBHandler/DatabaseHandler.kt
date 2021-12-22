@@ -67,11 +67,43 @@ class DatabaseHandler(context:Context) :
         return notesList
     }
 
+    fun ReadspecificNotes(id:Int): Notes {
+
+        val db = this.readableDatabase
+
+        val notesCursor = db.rawQuery("SELECT * FROM $TABLE_NOTES WHERE $NOTES_ID=$id", null)
+
+        notesCursor.moveToFirst()
+
+        val notesList: Notes=Notes(
+                        notesCursor.getInt(0),
+                        notesCursor.getString(1),
+                        notesCursor.getString(2)
+                    )
+
+        db.close()
+        return notesList
+    }
+
     fun deleteNotes(id:Int):Int{
 
         var db = this.writableDatabase
 
         var rows = db.delete(TABLE_NOTES,"$NOTES_ID=?", arrayOf<String>(id.toString()))
+        return rows
+    }
+
+    fun updateNotes(notes: Notes):Int {
+        var db = this.writableDatabase
+
+
+        var contentValues=ContentValues()
+        contentValues.put(NOTES_TITLE,notes.title)
+        contentValues.put(NOTES_TEXT,notes.note)
+
+
+       var rows= db.update(TABLE_NOTES, contentValues,"$NOTES_ID=?", arrayOf<String>(notes._id.toString()))
+
         return rows
     }
 }

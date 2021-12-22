@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Edit notes"
-        android:textColor="@color/yellow_700"
+        android:textColor="@color/black_700"
         style="@style/btnstyle"
         tools:ignore="SpeakableTextPresentCheck" />
 </LinearLayout>

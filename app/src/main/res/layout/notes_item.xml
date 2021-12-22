@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:background="@drawable/item_layout"
     android:layout_margin="10dp"
+    android:id="@+id/parentlayout"
     android:padding="10dp">
 
 
